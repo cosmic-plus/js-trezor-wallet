@@ -1,0 +1,22 @@
+{
+  "name": "cosmic-plus-trezor-wallet",
+  "description": "A wrapper around official Trezor utils that makes it easier to deal with Trezor wallets",
+  "authors": [
+    "MisterTicot"
+  ],
+  "homepage": "https://cosmic.plus/#view:js-trezor-wallet",
+  "licence": "MIT",
+  "keywords": [
+    "cryptocurrency",
+    "stellar",
+    "hardware",
+    "trezor",
+    "wallet"
+  ],
+  "main": "trezor-wallet.js",
+  "ignore": [
+    ".*",
+    "package-lock.json"
+  ],
+  "dependencies": {}
+}
