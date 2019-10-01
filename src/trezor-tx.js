@@ -4,6 +4,7 @@
  * format of transaction.
  */
 const Buffer = require("@cosmic-plus/base/es5/buffer")
+const StellarSdk = require("@cosmic-plus/base/es5/stellar-sdk")
 
 const TxTransformer = require("./tx-transformer")
 
@@ -43,12 +44,9 @@ class TrezorTransaction extends TxTransformer {
       } else if (op.type === "manageBuyOffer") {
         notSupported("operation manageBuyOffer")
       } else if (op.type === "setOptions") {
-        if (op.signer) {
-          notSupported("set signer")
-          op.signer_type = op.signer.type
-          op.signer_key = op.signer.key
-          op.signer_weight = op.signer.weight
-          delete op.signer
+        if (op.signer && op.signer.type === 0) {
+          const keypair = StellarSdk.Keypair.fromPublicKey(op.signer.key)
+          op.signer.key = keypair.rawPublicKey().toString("hex")
         }
       }
     })
@@ -121,9 +119,10 @@ rules.sequence = function (sequence) {
 
 rules.signer = function (signer) {
   signer.key = signer.value
+  delete signer.value
   if (signer.type === "key") signer.type = 0
-  else if (signer.type === "hash") signer.type = 1
-  else if (signer.type === "tx") signer.type = 2
+  else if (signer.type === "tx") signer.type = 1
+  else if (signer.type === "hash") signer.type = 2
   return signer
 }
 

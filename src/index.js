@@ -38,7 +38,6 @@
  * - The `inflation` operation,
  * - The `manageData` operation,
  * - The `manageBuyOffer` operation,
- * - Changing signers.
  *
  * If you encounter an unexpected error, please play the game and [fill an
  * issue](https://github.com/cosmic-plus/js-trezor-wallet/issues/new/choose).
