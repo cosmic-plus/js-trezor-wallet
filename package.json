@@ -18,11 +18,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "get": "git submodule update -i --recursive",
-    "clean": "rm -rf web/*",
+    "clean": "rm -rf es5/* web/*",
     "prettier": "prettier --write --no-semi 'src/**/*.{js,json,md}' '*.{js,json,md}'",
     "eslint": "eslint --fix 'src/**/*.js' '*.js'",
     "lint": "npm run prettier && npm run eslint",
-    "build-es5": "babel --delete-dir-on-start --out-dir es5 src",
+    "build-es5": "babel --out-dir es5 src",
     "build-js": "npm run build-es5 && webpack -p",
     "build-static": "cp -a static/. web",
     "build-misc": "cp -f *.md package-lock.json web",

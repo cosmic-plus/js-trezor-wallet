@@ -14,7 +14,7 @@ Please use the [dedicated form](https://github.com/cosmic-plus/js-trezor-wallet/
 ## Pull Requests
 
 1. Fork [js-trezor-wallet](https://github.com/cosmic-plus/js-trezor-wallet).
-2. Commit your changes to the fork
+2. Commit your changes to the fork.
 3. Create a pull request.
 
 If you want to implement a new feature, please get in touch first:
@@ -34,6 +34,8 @@ If you want to implement a new feature, please get in touch first:
 
 ```
 git clone https://git.cosmic.plus/js-trezor-wallet
+cd js-trezor-wallet
+npm run get
 ```
 
 **Commit:**
@@ -61,6 +63,7 @@ Please sign your commits and tags with your PGP key.
 
 Those helpers require a POSIX shell.
 
+- `npm run get`: Fetch the `web` sub-repository.
 - `npm run lint`: Lint code.
 - `npm run clean`: Clean the `web/` directory.
 - `npm run watch`: Automatically transpile & bundle code after each change.

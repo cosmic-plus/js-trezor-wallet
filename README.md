@@ -8,8 +8,8 @@
 ![Licence](https://img.shields.io/github/license/cosmic-plus/js-trezor-wallet.svg)
 [![Dependencies](https://badgen.net/david/dep/cosmic-plus/js-trezor-wallet)](https://david-dm.org/cosmic-plus/js-trezor-wallet)
 ![Vulnerabilities](https://snyk.io/test/npm/@cosmic-plus/trezor-wallet/badge.svg)
-![Size](https://badgen.net/bundlephobia/minzip/@cosmic-plus/trezor-wallet)
 ![Downloads](https://badgen.net/npm/dt/@cosmic-plus/trezor-wallet)
+![Bundle](https://badgen.net/badgesize/gzip/cosmic-plus/js-trezor-wallet-web/master/trezor-wallet.js?label=bundle)
 
 Easy Trezor wallet support for Stellar applications.
 
@@ -172,4 +172,5 @@ PublicKey of the connected account.
 **Organization:** [Cosmic.plus](https://cosmic.plus/) | [@GitHub](https://git.cosmic.plus) | [@NPM](https://www.npmjs.com/search?q=cosmic-plus)
 
 **Follow:** [Reddit](https://reddit.com/r/cosmic_plus) | [Twitter](https://twitter.com/cosmic_plus) | [Medium](https://medium.com/cosmic-plus) | [Codepen](https://codepen.io/cosmic-plus)
+
 **Talk:** [Telegram](https://t.me/cosmic_plus) | [Keybase](https://keybase.io/team/cosmic_plus)
