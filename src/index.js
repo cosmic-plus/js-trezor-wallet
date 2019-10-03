@@ -55,6 +55,20 @@ const Buffer = require("@cosmic-plus/base/es5/buffer")
 
 const TrezorTx = require("./trezor-tx")
 
+/* Properties */
+
+/**
+ * PublicKey of the connected account.
+ * @var {String}
+ */
+trezor.publicKey = null
+
+/**
+ * BIP path of the connected account.
+ * @var {String}
+ */
+trezor.path = null
+
 /* Methods */
 
 let connection, disconnection
@@ -121,10 +135,6 @@ trezor.connect = async function (account, index, internalFlag) {
      * @var {Number}
      */
     trezor.account = account || 0
-    /**
-     * BIP path of the connected account.
-     * @var {String}
-     */
     trezor.path = path
     trezor.index = index || 0
     trezor.internalFlag = internalFlag || false
@@ -149,10 +159,6 @@ async function connect () {
   const result = await connection
 
   if (result.success) {
-    /**
-     * PublicKey of the connected account.
-     * @var {String}
-     */
     trezor.publicKey = result.payload.address
     onConnect()
   } else {
