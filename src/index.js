@@ -55,6 +55,9 @@ const Buffer = require("@cosmic-plus/base/es5/buffer")
 
 const TrezorTx = require("./trezor-tx")
 
+/* Configuration */
+const BIP_PATH = "m/44'/148'"
+
 /* Properties */
 
 /**
@@ -104,52 +107,31 @@ trezor.register = function (appUrl, email) {
  * starts at 1 and account 1 BIP path is `m/44'/148'/0'`.
  *
  * @async
- * @param [account=1] {Number} Account number to connect to.
+ * @param [account=1] {Number|String} - Either the account number (starts at 1)
+ *     or a BIP path (e.g: "m/44'/148'/0'").
  */
-trezor.connect = async function (account, index, internalFlag) {
-  // Prevent account=0 error.
-  if (account === 0) throw new Error("Account number starts at 1.")
-
-  // Compute bip path.
-  if (account === undefined) {
-    account = trezor.account || 0
-    index = trezor.index || 0
-    internalFlag = trezor.internalFlag || false
-  } else {
-    account--
+trezor.connect = async function (account = trezor.path) {
+  let path = account || `${BIP_PATH}/0'`
+  if (typeof account === "number") {
+    if (account < 1) throw new Error("Account number starts at 1.")
+    path = `${BIP_PATH}/${account - 1}`
   }
 
-  const path = makePath(account, index, internalFlag)
-
-  // Ensure the disconnection process is finished.
+  // Ensure the disconnection process is finished, in any.
   if (disconnection) {
     await disconnection
     disconnection = null
   }
 
-  // If the bip path is different we need to go through connect() again.
+  // Update properties.
   if (trezor.path !== path) {
     reset()
-    /**
-     * Account number of the connected account.
-     * @var {Number}
-     */
-    trezor.account = account || 0
     trezor.path = path
-    trezor.index = index || 0
-    trezor.internalFlag = internalFlag || false
   }
 
   // Connect & update data only when needed.
   if (!connection) connection = connect()
   return connection
-}
-
-function makePath (account, index, internalFlag) {
-  let path = `m/44'/148'/${account}'`
-  if (index || internalFlag) path += internalFlag ? "/1'" : "/0'"
-  if (index) path += `/${index}'`
-  return path
 }
 
 async function connect () {
@@ -211,10 +193,8 @@ trezor.disconnect = async function () {
 
 function reset () {
   connection = null
-  const fields = ["path", "account", "index", "internalFlag", "publicKey"]
-  fields.forEach(name => {
-    delete trezor[name]
-  })
+  const fields = ["path", "publicKey"]
+  fields.forEach(name => trezor[name] = null)
 }
 
 /* Event handlers */
