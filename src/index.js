@@ -155,7 +155,10 @@ function makePath (account, index, internalFlag) {
 async function connect () {
   // eslint-disable-next-line no-console
   console.log("Attempting Trezor connection...")
-  connection = TrezorConnect.stellarGetAddress({ path: trezor.path })
+  connection = TrezorConnect.stellarGetAddress({
+    path: trezor.path,
+    showOnTrezor: false
+  })
   const result = await connection
 
   if (result.success) {
