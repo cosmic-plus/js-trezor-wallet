@@ -98,9 +98,11 @@ trezor.connect = async function (account, index, internalFlag) {
 
   // Compute bip path.
   if (account === undefined) {
-    account = trezor.account - 1 || 0
+    account = trezor.account || 0
     index = trezor.index || 0
     internalFlag = trezor.internalFlag || false
+  } else {
+    account--
   }
 
   const path = makePath(account, index, internalFlag)
