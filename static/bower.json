@@ -1,22 +1,11 @@
 {
   "name": "cosmic-plus-trezor-wallet",
   "description": "Easy Trezor wallet support for Stellar applications",
-  "authors": [
-    "MisterTicot"
-  ],
+  "authors": ["MisterTicot"],
   "homepage": "https://cosmic.plus/#view:js-trezor-wallet",
   "licence": "MIT",
-  "keywords": [
-    "stellar",
-    "hardware",
-    "Trezor",
-    "wallet",
-    "browser"
-  ],
+  "keywords": ["stellar", "hardware", "Trezor", "wallet", "browser"],
   "main": "trezor-wallet.js",
-  "ignore": [
-    ".*",
-    "package-lock.json"
-  ],
+  "ignore": [".*", "package-lock.json"],
   "dependencies": {}
 }
