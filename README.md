@@ -52,7 +52,6 @@ message will get thrown if you try to sign a transaction including them:
 - The `inflation` operation,
 - The `manageData` operation,
 - The `manageBuyOffer` operation,
-- Changing signers.
 
 If you encounter an unexpected error, please play the game and [fill an
 issue](https://github.com/cosmic-plus/js-trezor-wallet/issues/new/choose).
@@ -87,8 +86,7 @@ In your HTML page:
 <script src="https://cdn.cosmic.plus/trezor-wallet@0.x"></script>
 ```
 
-_Note:_ For production release it is advised to serve your own copy of the
-library.
+_Note:_ For production release it is advised to serve your copy of the library.
 
 ## Usage
 
@@ -122,9 +120,9 @@ When switching to another **account**, it is possible to `await trezorWallet.con
 _Note:_ To stay consistent with the way Trezor list accounts, **account**
 starts at 1 and account 1 BIP path is `m/44'/148'/0'`.
 
-| Param     | Type     | Default | Description                   |
-| --------- | -------- | ------- | ----------------------------- |
-| [account] | `Number` | `1`     | Account number to connect to. |
+| Param     | Type                 | Default | Description                                                                   |
+| --------- | -------------------- | ------- | ----------------------------------------------------------------------------- |
+| [account] | `Number` \| `String` | `1`     | Either the account number (starts at 1) or a BIP path (e.g: "m/44'/148'/0'"). |
 
 #### await trezorWallet.sign(transaction)
 
@@ -138,12 +136,12 @@ error.
 | ----------- | ------------- | ------------------------ |
 | transaction | `Transaction` | A StellarSdk Transaction |
 
-#### await trezorWallet.disconnect()
+#### trezorWallet.disconnect()
 
 Close the connection with the Trezor device, or stop listening for one in
 case a connection has not been established yet.
 
-### Event Handlers
+### Events
 
 #### trezorWallet.onConnect : `function`
 
@@ -153,19 +151,15 @@ _Function_ to execute on each connection.
 
 _Function_ to execute on each disconnection.
 
-### Properties
-
-#### trezorWallet.account : `Number`
-
-Account number of the connected account.
-
-#### trezorWallet.path : `String`
-
-BIP path of the connected account.
+### Members
 
 #### trezorWallet.publicKey : `String`
 
 PublicKey of the connected account.
+
+#### trezorWallet.path : `String`
+
+BIP path of the connected account.
 
 ## Links
 
