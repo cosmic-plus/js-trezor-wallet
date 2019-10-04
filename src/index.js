@@ -74,7 +74,7 @@ trezor.path = null
 
 /* Methods */
 
-let connection, disconnection
+let connection
 
 /**
  * Registers yourself in the Trezor Connect Manifest. This provides them the
@@ -114,13 +114,7 @@ trezor.connect = async function (account = trezor.path) {
   let path = account || `${BIP_PATH}/0'`
   if (typeof account === "number") {
     if (account < 1) throw new Error("Account number starts at 1.")
-    path = `${BIP_PATH}/${account - 1}`
-  }
-
-  // Ensure the disconnection process is finished, in any.
-  if (disconnection) {
-    await disconnection
-    disconnection = null
+    path = `${BIP_PATH}/${account - 1}'`
   }
 
   // Update properties.
@@ -185,9 +179,14 @@ trezor.sign = async function (transaction) {
 /**
  * Close the connection with the Trezor device, or stop listening for one in
  * case a connection has not been established yet.
- * @async
  */
-trezor.disconnect = async function () {
+trezor.disconnect = function () {
+  try {
+    // Try to close iframe. TODO: find a more reliable method
+    TrezorConnect.cancel()
+  } catch (error) {
+    null
+  }
   onDisconnect()
 }
 
