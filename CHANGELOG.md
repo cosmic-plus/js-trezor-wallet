@@ -21,6 +21,35 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 updates are guaranteed to respect backward-compatibility. For minor and major
 releases, please check this changelog before upgrading.
 
+## 0.2.0 - 2019-10-05
+
+### Breaking
+
+- API: `.disconnect()` is now synchronous.
+
+### Added
+
+- API: Add support for `trezor.connect(bipPath)`. `.connect()` now accepts
+  either an account number as per Trezor definition, either a BIP path. For
+  example, account 1 is `m/44'/148'/0'`.
+- Logic: Add `setOptions/signer` support. (Thanks [@matejcik])
+
+### Changed
+
+- Documentation: Update [CHANGELOG.md]. Outline the fact that this is a beta
+  release & that breaking changes may happen on minor updates (0.x.0).
+- Documentation: Update [README.md].
+- Logic: Skip validating pubkey on device. (Thanks [@matejcik])
+
+### Fixed
+
+- Logic: Fix account number handling. A mistake caused the wrong account to be
+  used in some cases.
+
 ## 0.1.0 - 2019-09-28
 
 Initial release.
+
+[@matejcik]: https://github.com/matejcik
+[readme.md]: https://cosmic.plus/#view:js-trezor-wallet
+[changelog.md]: https://cosmic.plus/#view:js-trezor-wallet/CHANGELOG
