@@ -1,4 +1,4 @@
-"use_strict"
+"use strict"
 /**
  * This is a convenient wrapper around the official
  * [TrezorConnect](https://github.com/trezor/connect) library.
