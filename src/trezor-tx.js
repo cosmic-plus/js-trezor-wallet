@@ -22,8 +22,8 @@ class TrezorTransaction extends TxTransformer {
     // Timebounds
     if (this.minTime || this.maxTime) {
       this.timebounds = {
-        minTime: this.minTime || null,
-        maxTime: this.maxTime || null
+        minTime: this.minTime == null ? null : this.minTime,
+        maxTime: this.maxTime == null ? null : this.maxTime
       }
       delete this.minTime
       delete this.maxTime
