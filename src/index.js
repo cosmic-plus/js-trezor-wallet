@@ -33,7 +33,6 @@
  * message will get thrown if you try to sign a transaction including them:
  *
  * - Text memos using binary data,
- * - The `bumpSequence` operation,
  * - The `changeTrust` operation,
  * - The `inflation` operation,
  * - The `manageData` operation,

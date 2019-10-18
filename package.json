@@ -59,6 +59,6 @@
     "@cosmic-plus/base": "^2.3.1",
     "@cosmic-plus/jsutils": "^2.0.2",
     "cosmic-lib": "^2.1.1",
-    "trezor-connect": "^7.0.5"
+    "trezor-connect": "^8.0.7"
   }
 }
