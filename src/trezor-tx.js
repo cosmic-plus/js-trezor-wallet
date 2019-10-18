@@ -35,8 +35,9 @@ class TrezorTransaction extends TxTransformer {
         op.assetType = op.assetCode.length <= 4 ? 1 : 2
         op.authorize = op.authorize ? 1 : 0
       } else if (op.type === "changeTrust") {
-        notSupported("operation changeTrust")
-        if (!op.limit) op.limit = rules.amount("922337203685.4775807")
+        if (!op.limit) op.limit = "9223372036854775807"
+        op.line = op.asset
+        delete op.asset
       } else if (op.type === "createPassiveSellOffer") {
         op.type = "createPassiveOffer"
       } else if (op.type === "manageSellOffer") {
