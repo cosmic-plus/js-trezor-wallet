@@ -94,7 +94,11 @@ rules.memo = function (memo) {
     memo.type = 1
     memo.text = memo.value
   } else if (memo.type === "base64") {
-    notSupported("binary memo text")
+    memo.type = 1
+    memo.text = Buffer.from(memo.value, "base64").toString("utf8")
+    if (memo.text.match("\u0000")) {
+      notSupported("binary text memo including NULL characters")
+    }
   } else if (memo.type === "id") {
     memo.type = 2
     memo.id = memo.value
