@@ -21,6 +21,24 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 updates are guaranteed to respect backward-compatibility. For minor and major
 releases, please check this changelog before upgrading.
 
+## 0.3.0 - 2019-10-19
+
+### Added
+
+- API: Add support for `changeTrust`.
+- API: Add partial support for binary text memo. Text memo buffers containing
+  NULL characters are still unsupported. See [trezor-firmware
+  issue#610](https://github.com/trezor/trezor-firmware/issues/610)
+
+### Changed
+
+- API: Upgrade [trezor-connect] to 8.0.7. It fixes `bumpSequence` operation
+  support.
+
+### Fixed
+
+- Logic: Fix handling of minTime|maxTime = 0.
+
 ## 0.2.0 - 2019-10-05
 
 ### Breaking
@@ -53,3 +71,4 @@ Initial release.
 [@matejcik]: https://github.com/matejcik
 [readme.md]: https://cosmic.plus/#view:js-trezor-wallet
 [changelog.md]: https://cosmic.plus/#view:js-trezor-wallet/CHANGELOG
+[trezor-connect]: https://github.com/trezor/connect/blob/develop/CHANGELOG.md

@@ -46,9 +46,7 @@ Trezor teams.
 A few operations & parameters are not supported yet. An explicit error
 message will get thrown if you try to sign a transaction including them:
 
-- Text memos using binary data,
-- The `bumpSequence` operation,
-- The `changeTrust` operation,
+- Binary text memo containing NULL characters,
 - The `inflation` operation,
 - The `manageData` operation,
 - The `manageBuyOffer` operation,
