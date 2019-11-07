@@ -15,11 +15,10 @@ Easy Trezor wallet support for Stellar applications.
 
 ## Introduction
 
-This is a convenient wrapper around the official
+This library is a convenient wrapper around the official
 [TrezorConnect](https://github.com/trezor/connect) library.
 
-It enables you to connect to Trezor devices and sign Stellar transactions in
-a few lines of code:
+It provides a way to support Trezor devices with a few one-liners:
 
 ```js
 // Step 1: Register to Trezor Connect Manifest
@@ -39,7 +38,7 @@ This library is browser-only.
 
 **Beta Release**
 
-This is a beta release that is made public for testing purpose. While the
+This is a beta release that is made public for testing purposes. While the
 library is stable & secure, several issues are still being worked out with
 Trezor teams.
 
@@ -90,7 +89,7 @@ _Note:_ For production release it is advised to serve your copy of the library.
 
 ### Methods
 
-#### trezorWallet.register(email, appUrl)
+#### trezorWallet.register(appUrl, email)
 
 Registers yourself in the Trezor Connect Manifest. This provides them the
 ability to reach you in case of any required maintenance.
@@ -101,26 +100,26 @@ This subscription is mandatory.
 
 | Param  | Type     | Description      |
 | ------ | -------- | ---------------- |
-| email  | `String` | Developer email. |
 | appUrl | `String` | Application URL. |
+| email  | `String` | Developer email. |
 
 #### await trezorWallet.connect([account])
 
 Waits for a connection with a Trezor wallet. If **account** is not provided,
-acount 1 is used. The library will stop listening for a connection if
+account 1 is used. The library will stop listening for a connection if
 `trezorWallet.disconnect()` is called.
 
 Once the connection is established, you can use `await trezorWallet.connect()` again at any time to ensure the device is still
 connected.
 
-When switching to another **account**, it is possible to `await trezorWallet.connect(new_account_number)` without prior disconnection.
+When switching to another **account**, you can `await trezorWallet.connect(new_account)` without prior disconnection.
 
-_Note:_ To stay consistent with the way Trezor list accounts, **account**
-starts at 1 and account 1 BIP path is `m/44'/148'/0'`.
+_Note:_ To stay consistent with the way Trezor number accounts, **account**
+starts at 1 (derivation path: `m/44'/148'/0'`).
 
-| Param     | Type                 | Default | Description                                                                   |
-| --------- | -------------------- | ------- | ----------------------------------------------------------------------------- |
-| [account] | `Number` \| `String` | `1`     | Either the account number (starts at 1) or a BIP path (e.g: "m/44'/148'/0'"). |
+| Param     | Type                 | Default | Description                                                                         |
+| --------- | -------------------- | ------- | ----------------------------------------------------------------------------------- |
+| [account] | `Number` \| `String` | `1`     | Either an account number (starts at 1) or a derivation path (e.g: `m/44'/148'/0'`). |
 
 #### await trezorWallet.sign(transaction)
 
@@ -136,8 +135,8 @@ error.
 
 #### trezorWallet.disconnect()
 
-Close the connection with the Trezor device, or stop listening for one in
-case a connection has not been established yet.
+Close the connection with the Trezor device, or stop waiting for one in case
+a connection has not been established yet.
 
 ### Events
 
@@ -157,7 +156,7 @@ PublicKey of the connected account.
 
 #### trezorWallet.path : `String`
 
-BIP path of the connected account.
+Derivation path of the connected account. (default: `m/44'/148'/0'`)
 
 ## Links
 

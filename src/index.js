@@ -1,11 +1,9 @@
 "use strict"
 /**
- * This is a convenient wrapper around the official
+ * This library is a convenient wrapper around the official
  * [TrezorConnect](https://github.com/trezor/connect) library.
  *
- *
- * It enables you to connect to Trezor devices and sign Stellar transactions in
- * a few lines of code:
+ * It provides a way to support Trezor devices with a few one-liners:
  *
  * ```js
  * // Step 1: Register to Trezor Connect Manifest
@@ -25,7 +23,7 @@
  *
  * **Beta Release**
  *
- * This is a beta release that is made public for testing purpose. While the
+ * This is a beta release that is made public for testing purposes. While the
  * library is stable & secure, several issues are still being worked out with
  * Trezor teams.
  *
@@ -60,13 +58,15 @@ const BIP_PATH = "m/44'/148'"
 
 /**
  * PublicKey of the connected account.
- * @var {String}
+ *
+ * @member {String}
  */
 trezor.publicKey = null
 
 /**
- * BIP path of the connected account.
- * @var {String}
+ * Derivation path of the connected account. (default: `m/44'/148'/0'`)
+ *
+ * @member {String}
  */
 trezor.path = null
 
@@ -82,8 +82,8 @@ let connection
  *
  * @see [Trezor Connect Manifest](https://github.com/trezor/connect/blob/develop/docs/index.md#trezor-connect-manifest)
  *
- * @param email {String} Developer email.
- * @param appUrl {String} Application URL.
+ * @param {String} appUrl - Application URL.
+ * @param {String} email - Developer email.
  */
 trezor.register = function (appUrl, email) {
   TrezorConnect.manifest({ email, appUrl })
@@ -91,22 +91,22 @@ trezor.register = function (appUrl, email) {
 
 /**
  * Waits for a connection with a Trezor wallet. If **account** is not provided,
- * acount 1 is used. The library will stop listening for a connection if
+ * account 1 is used. The library will stop listening for a connection if
  * `trezorWallet.disconnect()` is called.
  *
  * Once the connection is established, you can use `await
  * trezorWallet.connect()` again at any time to ensure the device is still
  * connected.
  *
- * When switching to another **account**, it is possible to `await
- * trezorWallet.connect(new_account_number)` without prior disconnection.
+ * When switching to another **account**, you can `await
+ * trezorWallet.connect(new_account)` without prior disconnection.
  *
- * _Note:_ To stay consistent with the way Trezor list accounts, **account**
- * starts at 1 and account 1 BIP path is `m/44'/148'/0'`.
+ * _Note:_ To stay consistent with the way Trezor number accounts, **account**
+ * starts at 1 (derivation path: `m/44'/148'/0'`).
  *
  * @async
- * @param [account=1] {Number|String} - Either the account number (starts at 1)
- *     or a BIP path (e.g: "m/44'/148'/0'").
+ * @param {Number|String} [account=1] - Either an account number (starts at 1)
+ * or a derivation path (e.g: `m/44'/148'/0'`).
  */
 trezor.connect = async function (account = trezor.path) {
   let path = account || `${BIP_PATH}/0'`
@@ -151,7 +151,7 @@ async function connect () {
  * error.
  *
  * @async
- * @param transaction {Transaction} A StellarSdk Transaction
+ * @param {Transaction} transaction - A StellarSdk Transaction
  */
 trezor.sign = async function (transaction) {
   const StellarSdk = require("@cosmic-plus/base/es5/stellar-sdk")
@@ -175,8 +175,8 @@ trezor.sign = async function (transaction) {
 }
 
 /**
- * Close the connection with the Trezor device, or stop listening for one in
- * case a connection has not been established yet.
+ * Close the connection with the Trezor device, or stop waiting for one in case
+ * a connection has not been established yet.
  */
 trezor.disconnect = function () {
   try {
@@ -194,7 +194,7 @@ function reset () {
   fields.forEach(name => trezor[name] = null)
 }
 
-/* Event handlers */
+/* Events */
 
 TrezorConnect.on("DEVICE_EVENT", event => {
   // eslint-disable-next-line no-console
@@ -207,7 +207,7 @@ TrezorConnect.on("DEVICE_EVENT", event => {
  * _Function_ to execute on each connection.
  *
  * @category event
- * @var {Function}
+ * @member {Function}
  */
 trezor.onConnect = null
 function onConnect () {
@@ -220,7 +220,7 @@ function onConnect () {
  * _Function_ to execute on each disconnection.
  *
  * @category event
- * @var {Function}
+ * @member {Function}
  */
 trezor.onDisconnect = null
 function onDisconnect () {
