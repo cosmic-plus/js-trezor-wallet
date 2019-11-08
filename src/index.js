@@ -195,6 +195,72 @@ function reset () {
 }
 
 /**
+ * Scans the Trezor device for accounts that exist on **params.horizon**. The
+ * scanning stops after encountering **params.attempts** unused accounts.
+ *
+ * Merged accounts are considered as existing accounts and will reset the
+ * **params.attempts** counter when encountered.
+ *
+ * Returns an _Array_ of _Objects_ containing `account` number, `publicKey`,
+ * `path`, and `state` (either `"open"` or `"merged"`).
+ *
+ * @param {Object} [params] - Optional parameters.
+ * @param {String|Server} [params.horizon="https://horizon.stellar.org"] - The
+ * Horizon server where to check for account existence. It can be either an URL
+ * or a _StellarSdk.Server_ object.
+ * @param {Number} [params.attempts=3] - The number of empty accounts before
+ * scanning stops.
+ * @param {Boolean} [params.includeMerged=false] - List merged accounts as well.
+ * @returns {Array}
+ */
+trezor.scan = async function ({
+  horizon = "https://horizon.stellar.org",
+  attempts = 3,
+  includeMerged = false
+}) {
+  if (typeof horizon === "string") {
+    const { Server } = require("@cosmic-plus/base/es5/stellar-sdk")
+    horizon = new Server(horizon)
+  }
+
+  const accounts = []
+  let miss = 0,
+    index = 1,
+    payload = []
+
+  while (miss < attempts) {
+    if (payload.length < index) {
+      payload = payload.concat(await trezor.getPublicKeys(index, attempts * 5))
+    }
+    const current = payload[index - 1]
+
+    // effectForAccount let us know about merged account as well.
+    const callBuilder = horizon.effects().forAccount(current.publicKey)
+    const response = await callBuilder
+      .order("desc")
+      .limit(1)
+      .call()
+      .catch(() => {})
+
+    if (response) {
+      miss = 0
+      const latest = response.records[0]
+      current.state = latest.type === "merge_account" ? "merged" : "open"
+
+      if (includeMerged || current.state === "open") {
+        accounts.push(current)
+      }
+    } else {
+      miss++
+    }
+
+    index++
+  }
+
+  return accounts
+}
+
+/**
  * Request multiple public keys from the Trezor device. The request will return
  * **length** accounts, starting by **start** (minimum 1).
  *
