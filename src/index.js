@@ -6,16 +6,13 @@
  * It provides a way to support Trezor devices with a few one-liners:
  *
  * ```js
- * // Step 1: Register to Trezor Connect Manifest
- * trezorWallet.register("example.org", "dev@example.org")
- *
- * // Step 2: Connect
+ * // Step 1: Connect
  * await trezorWallet.connect()
  *
- * // Step 3: Get public key
+ * // Step 2: Get public key
  * const pubkey = trezorWallet.publicKey
  *
- * // Step 4: Sign
+ * // Step 3: Sign
  * await trezorWallet.sign(transaction)
  * ```
  *
@@ -78,7 +75,8 @@ let connection
  * Registers yourself in the Trezor Connect Manifest. This provides them the
  * ability to reach you in case of any required maintenance.
  *
- * This subscription is mandatory.
+ * This subscription is mandatory and the library register the Cosmic.plus
+ * contact by default.
  *
  * @see [Trezor Connect Manifest](https://github.com/trezor/connect/blob/develop/docs/index.md#trezor-connect-manifest)
  *
@@ -88,6 +86,8 @@ let connection
 trezor.register = function (appUrl, email) {
   TrezorConnect.manifest({ email, appUrl })
 }
+// Register this library by default.
+trezor.register("@cosmic-plus/trezor-wallet", "mister.ticot@cosmic.plus")
 
 /**
  * Waits for a connection with a Trezor wallet. If **account** is not provided,
