@@ -28,9 +28,8 @@
  * message will get thrown if you try to sign a transaction including them:
  *
  * - Binary text memo containing NULL characters,
- * - The `inflation` operation,
  * - The `manageData` operation,
- * - The `manageBuyOffer` operation,
+ * - The `manageBuyOffer` operation
  *
  * If you encounter an unexpected error, please play the game and [fill an
  * issue](https://github.com/cosmic-plus/js-trezor-wallet/issues/new/choose).
@@ -287,7 +286,7 @@ trezor.scan = async function ({
  * `path`.
  *
  * @param {Number} [start=1] - Starting account number
- * @param {Number} [lenght=1] - Number of account to be listed.
+ * @param {Number} [length=1] - Number of account to be listed.
  * @return {Array}
  */
 trezor.getPublicKeys = async function (start = 1, length = 1) {
