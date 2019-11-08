@@ -194,6 +194,35 @@ function reset () {
   fields.forEach(name => trezor[name] = null)
 }
 
+/**
+ * Request multiple public keys from the Trezor device. The request will return
+ * **length** accounts, starting by **start** (minimum 1).
+ *
+ * Returns an _Array_ of _Objects_ with properties `account`, `publicKey`, and
+ * `path`.
+ *
+ * @param {Number} [start=1] - Starting account number
+ * @param {Number} [lenght=1] - Number of account to be listed.
+ * @return {Array}
+ */
+trezor.getPublicKeys = async function (start = 1, length = 1) {
+  const bundle = []
+
+  for (let account = start; account < start + length; account++) {
+    bundle.push({
+      path: trezor.connect.path(account),
+      showOnTrezor: false
+    })
+  }
+
+  const response = await TrezorConnect.stellarGetAddress({ bundle })
+  return response.payload.map((entry, index) => ({
+    account: start + index,
+    publicKey: entry.address,
+    path: entry.serializedPath
+  }))
+}
+
 /* Events */
 
 TrezorConnect.on("DEVICE_EVENT", event => {
