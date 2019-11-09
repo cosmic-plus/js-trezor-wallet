@@ -21,6 +21,32 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 updates are guaranteed to respect backward-compatibility. For minor and major
 releases, please check this changelog before upgrading.
 
+## 0.4.0 - 2019-11-09
+
+### Added
+
+- API: Add `.getPublicKeys()`. This method retrieves multiple public keys at
+  once. ([See
+  documentation](https://cosmic.plus/#view:js-trezor-wallet/%23trezorwalletgetpublickeys))
+
+- API: Add `.scan()`. This method scans for existing accounts on the Trezor
+  Device. ([See
+  documentation](https://cosmic.plus/#view:js-trezor-wallet/%23trezorwalletscan))
+
+- API: Add `.newAccount()`. This method connects the first unused account of a
+  Trezor device. ([See
+  documentation](https://cosmic.plus/#view:js-trezor-wallet/%23trezorwalletnewaccount))
+
+### Changed
+
+- API: Make `.register()` optional. The library now register using <Cosmic.plus>
+  credentials by default.
+
+- Documentation: Multiple improvements & fixes. _Important:_
+  `trezorWallet.register()` parameters were documented in the wrong order. The
+  correct order is `(appUrl, email)`.
+
+
 ## 0.3.0 - 2019-10-19
 
 ### Added
