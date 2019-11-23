@@ -76,7 +76,7 @@ In your HTML page:
 <script src="./bower_components/cosmic-plus-trezor-wallet/trezor-wallet.js"></script>
 ```
 
-### HTML
+### CDN
 
 In your HTML page:
 

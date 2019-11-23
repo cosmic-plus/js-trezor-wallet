@@ -46,7 +46,6 @@ releases, please check this changelog before upgrading.
   `trezorWallet.register()` parameters were documented in the wrong order. The
   correct order is `(appUrl, email)`.
 
-
 ## 0.3.0 - 2019-10-19
 
 ### Added
