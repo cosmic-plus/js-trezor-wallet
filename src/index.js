@@ -158,8 +158,6 @@ async function connect () {
  * @param {Transaction} transaction - A StellarSdk Transaction
  */
 trezor.sign = async function (transaction) {
-  const StellarSdk = require("@cosmic-plus/base/es5/stellar-sdk")
-
   if (!trezor.publicKey) throw new Error("No Trezor connected.")
 
   const result = await TrezorConnect.stellarSignTransaction({
@@ -169,11 +167,9 @@ trezor.sign = async function (transaction) {
   })
   if (!result.success) throw new Error(result.payload.error)
 
-  const keypair = StellarSdk.Keypair.fromPublicKey(trezor.publicKey)
-  const hint = keypair.signatureHint()
   const signature = Buffer.from(result.payload.signature, "hex")
-  const decorated = new StellarSdk.xdr.DecoratedSignature({ hint, signature })
-  transaction.signatures.push(decorated)
+  transaction.addSignature(trezor.publicKey, signature.toString("base64"))
+
   // DEBUG
   console.log("signed", transaction)
 }
