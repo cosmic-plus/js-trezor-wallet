@@ -14,6 +14,10 @@
  *
  * // Step 3: Sign
  * await trezorWallet.sign(transaction)
+ *
+ * // Extra: Event handlers
+ * trezorWallet.onConnect = connectionHandler
+ * trezorWallet.onDisconnect = disconnectionHandler
  * ```
  *
  * This library is browser-only.
@@ -29,7 +33,8 @@
  *
  * - Binary text memo containing NULL characters,
  * - The `manageData` operation,
- * - The `manageBuyOffer` operation
+ * - The `manageBuyOffer` operation,
+ * - The `pathPaymentStrictSend` operation.
  *
  * If you encounter an unexpected error, please play the game and [fill an
  * issue](https://github.com/cosmic-plus/js-trezor-wallet/issues/new/choose).
@@ -100,7 +105,7 @@ trezor.register("@cosmic-plus/trezor-wallet", "mister.ticot@cosmic.plus")
  * When switching to another **account**, you can `await
  * trezorWallet.connect(new_account)` without prior disconnection.
  *
- * _Note:_ To stay consistent with the way Trezor number accounts, **account**
+ * _Note:_ To stay consistent with the way Trezor numbers accounts, **account**
  * starts at 1 (derivation path: `m/44'/148'/0'`).
  *
  * @async
