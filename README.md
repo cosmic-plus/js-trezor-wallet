@@ -34,28 +34,26 @@ const pubkey = trezorWallet.publicKey
 
 // Step 3: Sign
 await trezorWallet.sign(transaction)
+
+// Extra: Event handlers
+trezorWallet.onConnect = connectionHandler
+trezorWallet.onDisconnect = disconnectionHandler
 ```
 
 This library is browser-only.
 
-**Beta Release**
-
-This is a beta release that is made public for testing purposes. While the
-library is stable & secure, several issues are still being worked out with
-Trezor teams.
+**Known limitations**
 
 A few operations & parameters are not supported yet. An explicit error
 message will get thrown if you try to sign a transaction including them:
 
 - Binary text memo containing NULL characters,
 - The `manageData` operation,
-- The `manageBuyOffer` operation
+- The `manageBuyOffer` operation,
+- The `pathPaymentStrictSend` operation.
 
-If you encounter an unexpected error, please play the game and [fill an
+If you encounter an unexpected error, please [fill an
 issue](https://github.com/cosmic-plus/js-trezor-wallet/issues/new/choose).
-
-The public release will possibly contain one or more breaking changes.
-Please check the [changelog](CHANGELOG.md) before upgrading.
 
 ## Installation
 
@@ -88,7 +86,7 @@ _Note:_ For production release it is advised to serve your copy of the library.
 
 ## Usage
 
-### Methods
+### Functions
 
 #### trezorWallet.register(appUrl, email)
 
@@ -111,12 +109,12 @@ Waits for a connection with a Trezor wallet. If **account** is not provided,
 account 1 is used. The library will stop listening for a connection if
 `trezorWallet.disconnect()` is called.
 
-Once the connection is established, you can use `await trezorWallet.connect()` again at any time to ensure the device is still
+Once the connection is established, you can use `await trezorWallet.connect(account)` again at any time to ensure the device is still
 connected.
 
 When switching to another **account**, you can `await trezorWallet.connect(new_account)` without prior disconnection.
 
-_Note:_ To stay consistent with the way Trezor number accounts, **account**
+_Note:_ To stay consistent with the way Trezor numbers accounts, **account**
 starts at 1 (derivation path: `m/44'/148'/0'`).
 
 | Param     | Type                 | Default | Description                                                                         |
