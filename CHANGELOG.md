@@ -21,6 +21,19 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 updates are guaranteed to respect backward-compatibility. For minor and major
 releases, please check this changelog before upgrading.
 
+## 1.0.0 - 2019-12-07
+
+### Breaking
+
+- API: Breaking change: account=1 is always the default for `.connect()`.
+  Previously, the default was the latest used account number, or 1. This was
+  leaving room for errors in account handling and has been changed to a clearer
+  behavior. As of now, the right way to ensure the connection is still alive is
+  to use `trezorWallet.connect(account)`, except when if _account_ is 1.
+- Logic: Breaking change: set `trezor.path` once connected. Before,
+  `trezor.path` was set before connection actually happened, which was an
+  inconsistent behavior.
+
 ## 0.5.0 - 2019-11-23
 
 ### Changed
