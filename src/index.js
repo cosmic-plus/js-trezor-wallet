@@ -119,27 +119,23 @@ trezor.connect = async function (account = trezor.path) {
     path = `${BIP_PATH}/${account - 1}'`
   }
 
-  // Update properties.
-  if (trezor.path !== path) {
-    reset()
-    trezor.path = path
-  }
-
   // Connect & update data only when needed.
-  if (!connection) connection = connect()
+  if (trezor.path && trezor.path !== path) trezor.disconnect()
+  if (!connection) connection = connect(path)
   return connection
 }
 
-async function connect () {
+async function connect (path) {
   // eslint-disable-next-line no-console
   console.log("Attempting Trezor connection...")
   connection = TrezorConnect.stellarGetAddress({
-    path: trezor.path,
+    path,
     showOnTrezor: false
   })
   const result = await connection
 
   if (result.success) {
+    trezor.path = path
     trezor.publicKey = result.payload.address
     onConnect()
   } else {
