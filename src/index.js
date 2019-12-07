@@ -99,8 +99,8 @@ trezor.register("@cosmic-plus/trezor-wallet", "mister.ticot@cosmic.plus")
  * `trezorWallet.disconnect()` is called.
  *
  * Once the connection is established, you can use `await
- * trezorWallet.connect()` again at any time to ensure the device is still
- * connected.
+ * trezorWallet.connect(account)` again at any time to ensure the device is
+ * still connected.
  *
  * When switching to another **account**, you can `await
  * trezorWallet.connect(new_account)` without prior disconnection.
@@ -112,7 +112,7 @@ trezor.register("@cosmic-plus/trezor-wallet", "mister.ticot@cosmic.plus")
  * @param {Number|String} [account=1] - Either an account number (starts at 1)
  * or a derivation path (e.g: `m/44'/148'/0'`).
  */
-trezor.connect = async function (account = trezor.path) {
+trezor.connect = async function (account) {
   let path = account || `${BIP_PATH}/0'`
   if (typeof account === "number") {
     if (account < 1) throw new Error("Account number starts at 1.")
