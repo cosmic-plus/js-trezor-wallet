@@ -253,7 +253,7 @@ trezor.scan = async function ({
     if (response) {
       miss = 0
       const latest = response.records[0]
-      current.state = latest.type === "merge_account" ? "merged" : "open"
+      current.state = latest.type === "account_removed" ? "merged" : "open"
 
       if (includeMerged || current.state === "open") {
         accounts.push(current)
