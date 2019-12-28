@@ -1,6 +1,6 @@
 {
   "name": "@cosmic-plus/trezor-wallet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easy Trezor wallet support for Stellar applications",
   "author": "MisterTicot <mister.ticot@cosmic.plus>",
   "homepage": "https://cosmic.plus/#view:js-trezor-wallet",
@@ -45,20 +45,20 @@
     "publish-release": "npm run check && npm run tag-release && npm run push-release && npm publish"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/plugin-transform-runtime": "^7.7.5",
-    "@babel/preset-env": "^7.7.5",
-    "@babel/runtime": "^7.7.5",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/runtime": "^7.7.7",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
     "prettier": "^1.19.1",
-    "webpack": "^4.41.2",
+    "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
     "@cosmic-plus/base": "^2.5.2",
     "@cosmic-plus/jsutils": "^2.0.2",
     "cosmic-lib": "^2.5.0",
-    "trezor-connect": "^8.0.10"
+    "trezor-connect": "^8.0.12"
   }
 }

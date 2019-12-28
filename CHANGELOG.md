@@ -21,6 +21,12 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 updates are guaranteed to respect backward-compatibility. For minor and major
 releases, please check this changelog before upgrading.
 
+## 1.0.1 - 2019-12-28
+
+### Fixed
+
+- Logic: Fix `.scan()` handling of merged account. (They were stated as opened)
+
 ## 1.0.0 - 2019-12-07
 
 ### Breaking
