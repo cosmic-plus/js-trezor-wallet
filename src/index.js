@@ -160,6 +160,7 @@ trezor.sign = async function (transaction) {
   transaction.addSignature(trezor.publicKey, signature.toString("base64"))
 
   // DEBUG
+  // eslint-disable-next-line no-console
   console.log("signed", transaction)
 }
 

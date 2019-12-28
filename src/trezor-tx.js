@@ -53,6 +53,7 @@ class TrezorTransaction extends TxTransformer {
     })
 
     // DEBUG
+    // eslint-disable-next-line no-console
     console.log("Trezor TX", JSON.stringify(this, null, 2))
   }
 }
