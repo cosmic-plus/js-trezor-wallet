@@ -150,7 +150,7 @@ _Note:_ merged accounts are considered as used.
   Horizon server where to check for account existence. It can be either an URL
   or a _StellarSdk.Server_ object.
 
-#### trezorWallet.scan([params]) ⇒  _Array_
+#### trezorWallet.scan([params]) ⇒ _Array_
 
 Scans the Trezor device for accounts that exist on **params.horizon**. The
 scanning stops after encountering **params.attempts** unused accounts.
@@ -171,7 +171,7 @@ Returns an _Array_ of _Objects_ containing `account` number, `publicKey`,
     scanning stops.
   - `includeMerged`: _Boolean (default: false)_ - List merged accounts as well.
 
-#### trezorWallet.getPublicKeys([start], [length]) ⇒  _Array_
+#### trezorWallet.getPublicKeys([start], [length]) ⇒ _Array_
 
 Request multiple public keys from the Trezor device. The request will return
 **length** accounts, starting by **start** (minimum 1).

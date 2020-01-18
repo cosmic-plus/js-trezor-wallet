@@ -19,6 +19,14 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 backward-compatibility and can be updated to without risk of breakage. For major
 releases, please check this changelog before upgrading.
 
+## 1.0.2 - 2020-01-18
+
+### Fixed
+
+- Documentation: Update according to 1.x release. (sorry about that!)
+- Logic: Update trezor-connect to 8.0.13.
+  ([bugfixes](https://github.com/trezor/connect/blob/develop/CHANGELOG.md#8013))
+
 ## 1.0.1 - 2019-12-28
 
 ### Fixed
