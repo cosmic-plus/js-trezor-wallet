@@ -1,6 +1,6 @@
 {
   "name": "@cosmic-plus/trezor-wallet",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Easy Trezor wallet support for Stellar applications",
   "author": "MisterTicot <mister.ticot@cosmic.plus>",
   "homepage": "https://cosmic.plus/#view:js-trezor-wallet",
