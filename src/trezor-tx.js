@@ -119,10 +119,6 @@ rules.price = function (price) {
   else return price
 }
 
-rules.sequence = function (sequence) {
-  return Number(sequence)
-}
-
 rules.signer = function (signer) {
   signer.key = signer.value
   delete signer.value
