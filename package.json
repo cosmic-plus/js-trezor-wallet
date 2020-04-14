@@ -58,7 +58,6 @@
   "dependencies": {
     "@babel/runtime": "^7.8.7",
     "@cosmic-plus/base": "^2.5.2",
-    "@cosmic-plus/jsutils": "^2.0.2",
     "cosmic-lib": "^2.6.0",
     "trezor-connect": "^8.0.13"
   }
