@@ -19,6 +19,12 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 backward-compatibility and can be updated to without risk of breakage. For major
 releases, please check this changelog before upgrading.
 
+## 1.2.0 - 2020-04-18
+
+### Changed
+
+- Logic: Update [trezor-connect]. (firmware compatibility update + bugfixes)
+
 ## 1.1.0 - 2020-03-07
 
 ### Changed
