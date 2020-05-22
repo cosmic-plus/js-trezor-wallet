@@ -44,6 +44,10 @@ class TrezorTransaction extends TxTransformer {
         op.type = "manageOffer"
       } else if (op.type === "manageBuyOffer") {
         notSupported("operation manageBuyOffer")
+      } else if (op.type === "pathPaymentStrictReceive") {
+        op.type = "pathPayment"
+      } else if (op.type === "pathPaymentStrictSend") {
+        notSupported("operation pathPaymentStrictSend")
       } else if (op.type === "setOptions") {
         if (op.signer && op.signer.type === 0) {
           const keypair = StellarSdk.Keypair.fromPublicKey(op.signer.key)
