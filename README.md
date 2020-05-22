@@ -48,7 +48,6 @@ A few operations & parameters are not supported yet. An explicit error
 message will get thrown if you try to sign a transaction including them:
 
 - Binary text memo containing NULL characters,
-- The `manageData` operation,
 - The `manageBuyOffer` operation,
 - The `pathPaymentStrictSend` operation.
 
