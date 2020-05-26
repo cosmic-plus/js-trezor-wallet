@@ -20,10 +20,10 @@ class TrezorTransaction extends TxTransformer {
     else this.fee = Number(this.fee) / 10000000
 
     // Timebounds
-    if (this.minTime || this.maxTime) {
+    if (this.minTime != null || this.maxTime !== null) {
       this.timebounds = {
-        minTime: this.minTime == null ? null : this.minTime,
-        maxTime: this.maxTime == null ? null : this.maxTime
+        minTime: this.minTime == null ? 0 : this.minTime,
+        maxTime: this.maxTime == null ? 0 : this.maxTime
       }
       delete this.minTime
       delete this.maxTime
