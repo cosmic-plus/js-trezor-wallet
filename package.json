@@ -59,6 +59,6 @@
     "@babel/runtime": "^7.10.2",
     "@cosmic-plus/base": "^2.7.0",
     "cosmic-lib": "^2.9.0",
-    "trezor-connect": "^8.1.14"
+    "trezor-connect": "^8.1.17"
   }
 }
