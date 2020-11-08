@@ -30,7 +30,7 @@ class TrezorTransaction extends TxTransformer {
     }
 
     // Operations
-    this.operations.forEach(op => {
+    this.operations.forEach((op) => {
       if (op.type === "allowTrust") {
         op.assetType = op.assetCode.length <= 4 ? 1 : 2
         op.authorize = op.authorize ? 1 : 0

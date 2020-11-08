@@ -181,7 +181,7 @@ trezor.disconnect = function () {
 function reset () {
   connection = null
   const fields = ["path", "publicKey"]
-  fields.forEach(name => trezor[name] = null)
+  fields.forEach((name) => trezor[name] = null)
 }
 
 /**
@@ -300,7 +300,7 @@ trezor.getPublicKeys = async function (start = 1, length = 1) {
 
 /* Events */
 
-TrezorConnect.on("DEVICE_EVENT", event => {
+TrezorConnect.on("DEVICE_EVENT", (event) => {
   // eslint-disable-next-line no-console
   console.log("DEVICE_EVENT", console.log(event))
   if (event.type === "device-disconnect") onDisconnect()

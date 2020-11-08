@@ -12,11 +12,11 @@ class TxTransformer {
   constructor (rules, tx) {
     const tdesc = new CosmicLink(tx).tdesc
 
-    specs.transactionOptionalFields.forEach(field => {
+    specs.transactionOptionalFields.forEach((field) => {
       const value = tdesc[field]
       if (value) this[field] = transform.field(rules, field, value)
     })
-    this.operations = tdesc.operations.map(o => transform.odesc(rules, o))
+    this.operations = tdesc.operations.map((o) => transform.odesc(rules, o))
   }
 }
 
