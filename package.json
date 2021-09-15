@@ -8,6 +8,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "module": "es5/index.js",
+  "browserslist": "extends @kisbox/browserslist-config",
   "keywords": [
     "stellar",
     "hardware",
@@ -49,6 +50,7 @@
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.6",
+    "@kisbox/browserslist-config": "^1.0.0-beta.21",
     "babel-loader": "^8.2.2",
     "eslint": "^7.32.0",
     "prettier": "^2.4.0",
